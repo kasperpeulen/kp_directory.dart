@@ -23,7 +23,7 @@ Directory copySync(Directory from, Directory to) {
   if (!to.existsSync()) to.createSync(recursive: true);
 
   // recursively copy all files and directories
-  from.listSync().forEach((element) {
+  from.listSync(followLinks: false).forEach((element) {
     String newPath = join(to.path, basename(element.path));
     if (element is File) {
       element.copy(newPath);
