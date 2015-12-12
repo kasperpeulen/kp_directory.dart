@@ -10,11 +10,13 @@ void main() {
     final tempDir = Directory.systemTemp.createTempSync('a');
 
     dir_util.getFile(tempDir, "hello_world.txt")..createSync();
-    var link = dir_util.getLink(tempDir, "linktohello_world.txt")..createSync("hello_world.txt");
+    var link = dir_util.getLink(tempDir, "linktohello_world.txt")
+      ..createSync("hello_world.txt");
 
     var dirInTempDir = dir_util.getDirectory(tempDir, "newDir")..createSync();
 
-    var copyToLink = dir_util.getLink(dirInTempDir, 'otherlinktohello_world.txt');
+    var copyToLink =
+        dir_util.getLink(dirInTempDir, 'otherlinktohello_world.txt');
     var newLink = link_util.copySync(link, copyToLink);
 
     expect(newLink.targetSync(), link.targetSync());
