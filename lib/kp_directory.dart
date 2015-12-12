@@ -25,6 +25,7 @@ void copySync(Directory from, Directory to) {
     } else if (element is Directory) {
       copySync(element, new Directory(newPath));
     } else if (element is Link) {
+      // TODO how to implement this?
       throw new UnimplementedError(
           'Copying directories that contain Link objects '
           'is not implemented yet');
