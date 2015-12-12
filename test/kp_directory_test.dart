@@ -45,7 +45,7 @@ void main() {
   });
 
   group("copySync", () {
-    test("it does copy", () {
+    test("it does copy files", () {
       final fileInTempDir = getFile(tempDir, 'hello_world.txt')..createSync();
 
       final newDir = Directory.systemTemp.createTempSync();
@@ -57,6 +57,43 @@ void main() {
       expect(newDir.existsSync(), isTrue);
 
       expect(basename(newDir.listSync()[0].path), basename(fileInTempDir.path));
+      newDir.deleteSync(recursive: true);
+    });
+
+    test("it does copy directories", () {
+      final dirInTempDir = getDirectory(tempDir, 'hello_world.txt')
+        ..createSync();
+
+      final newDir = Directory.systemTemp.createTempSync();
+      newDir.deleteSync(recursive: true);
+      expect(newDir.existsSync(), isFalse);
+
+      copySync(tempDir, newDir);
+
+      expect(newDir.existsSync(), isTrue);
+
+      expect(basename(newDir.listSync()[0].path), basename(dirInTempDir.path));
+      newDir.deleteSync(recursive: true);
+    });
+
+    test("it does copy directories and files recursive ", () {
+      getFile(tempDir, 'hello_world.txt')..createSync();
+
+      final dirInTempDir = getDirectory(tempDir, 'hello_world')..createSync();
+
+      getFile(dirInTempDir, "heloo_world.txt")..createSync();
+
+      // create a dir to remove again (for making a random name)
+      final newDir = Directory.systemTemp.createTempSync();
+      newDir.deleteSync(recursive: true);
+
+      expect(newDir.existsSync(), isFalse);
+
+      copySync(tempDir, newDir);
+
+      expect(newDir.existsSync(), isTrue);
+
+      expect(newDir.listSync(recursive: true).length, 3);
       newDir.deleteSync(recursive: true);
     });
   });
