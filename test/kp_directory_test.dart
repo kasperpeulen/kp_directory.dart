@@ -93,12 +93,12 @@ void main() {
 
       expect(newDir.existsSync(), isTrue);
 
-      expect(newDir.listSync(recursive: true).map((e) => basename(e.path)), [
+      expect(newDir.listSync(recursive: true).map((e) => basename(e.path)).toSet(), equals([
         "hello_world",
         "helo_world.txt",
         "linktohello.txt",
         "hello_world.txt"
-      ]);
+      ].toSet()));
       newDir.deleteSync(recursive: true);
     });
   });
