@@ -6,12 +6,12 @@ void makeEmptySync(Directory dir) {
   dir.listSync().forEach((f) => f.deleteSync(recursive: true));
 }
 
-File createFileSync(Directory dir, String fileName) {
-  return new File(join(dir.path, fileName))..createSync();
+File getFile(Directory dir, String fileName) {
+  return new File(join(dir.path, fileName));
 }
 
-Directory createDirSync(Directory dir, String directoryName) {
-  return new Directory(join(dir.path, directoryName))..createSync();
+Directory getDirectory(Directory dir, String directoryName) {
+  return new Directory(join(dir.path, directoryName));
 }
 
 void copySync(Directory from, Directory to) {
