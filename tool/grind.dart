@@ -42,8 +42,9 @@ void testdartfmt() {
 void coverage() {
   final String coverageToken = Platform.environment['COVERALLS_TOKEN'];
   if (coverageToken != null) {
-    PubApp coverallsApp = new PubApp.global('dart_coveralls');
-    coverallsApp.run([
+//    PubApp coverallsApp = new PubApp.global('dart_coveralls');
+    Pub.global.activate('dart_coveralls');
+    Process.runSync('dart_coveralls', [
       'report',
       '--retry',
       '2',
