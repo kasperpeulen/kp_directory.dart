@@ -48,7 +48,7 @@ void coverage() {
       '--retry',
       '2',
       '--exclude-test-files',
-      'test/kp_directory_test.dart'
+      'test/test_all.dart'
     ]);
   } else {
     log('Skipping coverage task: no environment variable `COVERALLS_TOKEN` found.');

@@ -1,5 +1,6 @@
 import 'dart:io';
 
-void copySync(Link from, Link to) {
+Link copySync(Link from, Link to) {
   to.createSync(from.targetSync());
+  return to;
 }

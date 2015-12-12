@@ -19,7 +19,7 @@ Link getLink(Directory dir, String linkName) {
   return new Link(join(dir.path, linkName));
 }
 
-void copySync(Directory from, Directory to) {
+Directory copySync(Directory from, Directory to) {
   if (!to.existsSync()) to.createSync(recursive: true);
 
   // recursively copy all files and directories
@@ -33,4 +33,5 @@ void copySync(Directory from, Directory to) {
       link_util.copySync(element, new Link(newPath));
     }
   });
+  return to;
 }
