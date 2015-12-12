@@ -44,7 +44,7 @@ void coverage() {
   if (coverageToken != null) {
 //    PubApp coverallsApp = new PubApp.global('dart_coveralls');
     Pub.global.activate('dart_coveralls');
-    Process.runSync('dart_coveralls', [
+    run('dart_coveralls', arguments: [
       'report',
       '--retry',
       '2',
