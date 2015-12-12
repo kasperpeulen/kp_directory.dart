@@ -19,15 +19,3 @@ import 'package:kp_directory/kp_directory.dart';
 main() {
 }
 ```
-
-## Features and bugs
-
-Please file feature requests and bugs at the [issue tracker][tracker].
-
-[tracker]: https://github.com/kasperpeulen/kp_directory.dart/issues
-
-## License
-
-[MIT][license]
-
-[license]: https://github.com/kasperpeulen/kp_directory.dart/blob/master/LICENSE
