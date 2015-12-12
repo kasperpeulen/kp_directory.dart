@@ -93,7 +93,12 @@ void main() {
 
       expect(newDir.existsSync(), isTrue);
 
-      expect(newDir.listSync(recursive: true).length, 4);
+      expect(newDir.listSync(recursive: true).map((e) => e.path), [
+        "hello_world",
+        "hello_world.txt",
+        "linktohello.txt",
+        "helo_world.txt"
+      ]);
       newDir.deleteSync(recursive: true);
     });
   });
