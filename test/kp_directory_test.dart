@@ -76,13 +76,13 @@ void main() {
       newDir.deleteSync(recursive: true);
     });
 
-    test("it does copy directories and files recursive ", () {
+    test("it does copy directories, files, links recursively ", () {
       getFile(tempDir, 'hello_world.txt')..createSync();
 
       final dirInTempDir = getDirectory(tempDir, 'hello_world')..createSync();
 
-      getFile(dirInTempDir, "heloo_world.txt")..createSync();
-
+      getFile(dirInTempDir, "helo_world.txt")..createSync();
+      getLink(dirInTempDir, "linktohello.txt")..createSync("helo_world.txt");
       // create a dir to remove again (for making a random name)
       final newDir = Directory.systemTemp.createTempSync();
       newDir.deleteSync(recursive: true);
@@ -93,7 +93,7 @@ void main() {
 
       expect(newDir.existsSync(), isTrue);
 
-      expect(newDir.listSync(recursive: true).length, 3);
+      expect(newDir.listSync(recursive: true).length, 4);
       newDir.deleteSync(recursive: true);
     });
   });

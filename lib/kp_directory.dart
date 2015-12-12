@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:kp_directory/kp_link.dart' as link_util;
 import 'package:path/path.dart';
 
 void makeEmptySync(Directory dir) {
@@ -14,21 +15,22 @@ Directory getDirectory(Directory dir, String directoryName) {
   return new Directory(join(dir.path, directoryName));
 }
 
+Link getLink(Directory dir, String linkName) {
+  return new Link(join(dir.path, linkName));
+}
+
 void copySync(Directory from, Directory to) {
   if (!to.existsSync()) to.createSync(recursive: true);
 
   // recursively copy all files and directories
   from.listSync().forEach((element) {
-    String newPath = "${to.path}/${basename(element.path)}";
+    String newPath = join(to.path, basename(element.path));
     if (element is File) {
       element.copy(newPath);
     } else if (element is Directory) {
       copySync(element, new Directory(newPath));
     } else if (element is Link) {
-      // TODO how to implement this?
-      throw new UnimplementedError(
-          'Copying directories that contain Link objects '
-          'is not implemented yet');
+      link_util.copySync(element, new Link(newPath));
     }
   });
 }
