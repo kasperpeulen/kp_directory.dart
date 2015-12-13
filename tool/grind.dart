@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dart_dev/dart_dev.dart' as dart_dev;
 import 'package:grinder/grinder.dart';
 import 'package:grinder/src/utils.dart';
 
@@ -50,6 +51,6 @@ void coverage() {
       'test/test_all.dart'
     ]);
   } else {
-    Pub.global.run('dart_dev', arguments: ['coverage']);
+    dart_dev.dev(['coverage']);
   }
 }
