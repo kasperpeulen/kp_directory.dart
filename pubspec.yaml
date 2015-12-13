@@ -2,7 +2,7 @@ name: kp_directory
 description: Collection of useful functions for Directory objects.
 author: Kasper Peulen <kasperpeulen@gmail.com>
 homepage: https://github.com/kasperpeulen/kp_directory.dart
-version: 0.0.0
+version: 0.0.1
 environment:
   sdk: '>=1.13.0 <2.0.0'
 dev_dependencies:
