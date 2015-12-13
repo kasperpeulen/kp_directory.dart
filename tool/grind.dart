@@ -8,7 +8,7 @@ void main(List<String> args) {
 }
 
 @DefaultTask()
-@Depends(analyze, test, format)
+@Depends(analyze, test, format, coverage)
 void prepush() {}
 
 @Task()
@@ -40,8 +40,7 @@ void testdartfmt() {
 
 @Task('Gather and send coverage data')
 void coverage() {
-  final String coverageToken = Platform.environment['COVERALLS_TOKEN'];
-  if (coverageToken != null) {
+  if (Platform.environment['COVERALLS_TOKEN'] != null) {
     Pub.global.activate('dart_coveralls');
     run('dart_coveralls', arguments: [
       'report',
@@ -51,6 +50,6 @@ void coverage() {
       'test/test_all.dart'
     ]);
   } else {
-    log('Skipping coverage task: no environment variable `COVERALLS_TOKEN` found.');
+    Pub.global.run('dart_dev', arguments: ['coverage']);
   }
 }

@@ -8,3 +8,5 @@ environment:
 dev_dependencies:
   test: ^0.12.6+1
   grinder: ^0.8.0+1
+  coverage: ^0.7.2
+  dart_dev: ^1.0.5
