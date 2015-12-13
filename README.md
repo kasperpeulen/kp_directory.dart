@@ -1,5 +1,3 @@
-# kp_directory.dart
-
 Collection of useful functions for Directory objects.
 
 <a href="https://travis-ci.org/kasperpeulen/kp_directory.dart"><img src="https://travis-ci.org/kasperpeulen/kp_directory.dart.svg?branch=master" alt="Build Status" /></a>
