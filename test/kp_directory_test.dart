@@ -93,14 +93,17 @@ void main() {
 
       expect(newDir.existsSync(), isTrue);
 
+      final dirTree = newDir.listSync(followLinks: false, recursive: true);
       expect(
-          newDir.listSync(recursive: true).map((e) => basename(e.path)).toSet(),
+          dirTree.map((e) => basename(e.path)).toSet(),
           equals([
             "hello_world",
             "helo_world.txt",
             "linktohello.txt",
             "hello_world.txt"
           ].toSet()));
+
+      expect(dirTree.any((e) => e is Link), isTrue);
       newDir.deleteSync(recursive: true);
     });
   });
